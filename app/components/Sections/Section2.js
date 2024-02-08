@@ -68,32 +68,32 @@ const Section2 = () => {
           <div>
             <div className="pt-3 flex flex-col gap-4 pb-5">
               <p className="font-medium text-label text-[#4A4A4A] max-w-[800px] leading-[150%]">
-                Step into the realm of JCL aka Jio Creative Labs, where
+                {`Step into the realm of JCL aka Jio Creative Labs, where
                 imagination runs wild and creativity takes the center stage.
                 We're not your average agency; we're the misfits who bring the
-                funk to your brand.
+                funk to your brand.`}
               </p>
               {isExpanded && (
                 <>
                   <p className="font-medium text-label text-[#4A4A4A] max-w-[800px] leading-[150%]">
-                    We're the rule-breakers, the rebels with a purpose, the
+                    {` We're the rule-breakers, the rebels with a purpose, the
                     architects of engagement, the superheroes of storytelling,
                     the ninjas of social media, the wizards of innovation, and
                     the maestros of turning "meh" into "heck yeah!" We believe
                     that marketing should be anything but boring. With the
                     mighty force of India's largest private sector company
                     fueling our passion, we're here to set your brand on fire
-                    with our unmatched, new-age expertise.{" "}
+                    with our unmatched, new-age expertise.{" "}`}
                   </p>
                   <p className="font-medium text-label text-[#4A4A4A] max-w-[800px] leading-[150%]">
-                    We're not just another agency-cum-production-house. In a
+                    {`We're not just another agency-cum-production-house. In a
                     nutshell, we're a full-service powerhouse that lives and
                     breathes marketing. From mainline advertising to digital
                     wizardry, from social media mastery to mind-blowing branded
                     content, we've got you covered. We're even dabbling in IPs,
                     OTT shows, events, influencer outreach, and mind-boggling
                     technology-driven content. Trust us, we're everywhere! Think
-                    of us as your 360, one-stop-shop for all things awesome.
+                    of us as your 360, one-stop-shop for all things awesome.`}
                   </p>
                 </>
               )}
