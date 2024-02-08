@@ -1,33 +1,76 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer utilities {
+  .container {
+    max-width: 1250px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .shadow-drop {
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  font-family: "Montserrat", sans-serif;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Archivo Black", sans-serif;
+}
+
+p {
+  font-family: "Montserrat", sans-serif;
+}
+.font-archivo {
+  font-family: "Archivo Black", sans-serif;
+}
+
+.font-source-sans {
+  font-family: "Source Sans 3", sans-serif;
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
   }
+}
+
+@-webkit-keyframes spin-slow {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.animate-scale {
+  animation: scale 1600ms linear infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 10s linear infinite;
+  -webkit-animation: spin-slow 10s linear infinite;
 }
