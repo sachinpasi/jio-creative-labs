@@ -15,26 +15,30 @@ const TextRevealAnimation = ({ words, classNames, fontSize }) => {
   useEffect(() => {
     const wordsElements = containerRef.current.children;
 
-    gsap.set(wordsElements, { opacity: 0, y: "10%" });
+    gsap.set(wordsElements, { opacity: 0, y: "40%" });
 
     let tl = gsap.timeline({ repeat: -1 }); // Loop indefinitely
 
     words.forEach((wordObj, index) => {
-      if (index > 0) {
-        tl.to(wordsElements[index - 1], {
-          opacity: 0,
-          duration: 0,
-          ease: "elastic.out",
-        });
-      }
       tl.to(wordsElements[index], {
-        delay: 0.5,
-        duration: 0.4,
+        delay: index === 0 ? 0 : "+=1.7",
         opacity: 1,
         y: "0%",
-        ease: "elastic.out(1,0.5)",
-        color: colors[wordObj.color] || "inherit", // Apply color if specified in word object
-      });
+        duration: 0.4,
+        ease: "back.out(1)",
+        color: colors[wordObj.color] || "inherit",
+      })
+        .to(wordsElements[index], {
+          delay: 0.9,
+          y: "-=20px",
+          duration: 0.2,
+          ease: "power1.inOut",
+        })
+        .to(wordsElements[index], {
+          opacity: 0,
+          duration: 0,
+          ease: "none",
+        });
     });
 
     return () => {

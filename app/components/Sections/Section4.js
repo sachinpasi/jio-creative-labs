@@ -4,25 +4,34 @@ import VerticalSlider from "../UI/VerticalCarousel";
 
 const Section4 = () => {
   return (
-    <div className="min-h-screen pb-[120px] bg-black">
+    <div className="md:min-h-screen pb-[120px] bg-black">
       <VerticalSlider
         width="100vw"
         height="100vh"
         items={[
           {
-            name: "SLIDE_1",
+            name: "/videos/part1(split-video.com).mp4",
           },
           {
-            name: "SLIDE_2",
+            name: "/videos/part2(split-video.com).mp4",
           },
           {
-            name: "SLIDE_3",
+            name: "/videos/part3(split-video.com).mp4",
           },
           {
-            name: "SLIDE_4",
+            name: "/videos/part4(split-video.com).mp4",
           },
           {
-            name: "SLIDE_5",
+            name: "/videos/part5(split-video.com).mp4",
+          },
+          {
+            name: "/videos/part6(split-video.com).mp4",
+          },
+          {
+            name: "/videos/part7(split-video.com).mp4",
+          },
+          {
+            name: "/videos/part8(split-video.com).mp4",
           },
         ]}
       />

@@ -8,10 +8,10 @@ const STROKE = {
   WebkitTextStrokeColor: "black",
 };
 
-const Section1 = () => {
+const Section1 = ({ isDesktop }) => {
   return (
-    <div className="my-[100px] overflow-hidden h-[584px]  relative  flex justify-center items-center">
-      <div className="flex justify-center items-center absolute z-10 left-1/2 -translate-x-1/2 ">
+    <div className="md:my-[100px] my-[40px] overflow-hidden h-[500px] md:h-[584px]  relative  flex justify-center items-center">
+      <div className="flex justify-center items-center absolute z-10 left-1/2 -translate-x-1/2 w-[300px] h-[400px] md:w-auto md:h-auto">
         <Icon
           name={"ILLUSRTATION_1"}
           width={680}

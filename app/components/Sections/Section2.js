@@ -1,9 +1,10 @@
 "use client";
-import React, { useState } from "react";
+
+import React, { useEffect, useState } from "react";
 import Icon from "../UI/Icon";
 import TextRevealAnimation from "../UI/TextRevealAnimation";
 
-const Section2 = () => {
+const Section2 = ({ isDesktop }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -19,27 +20,28 @@ const Section2 = () => {
     background:
       "linear-gradient(90deg, #03007F 0%, #FF2E63 53.12%, #00C0CC 100%)",
   };
+
   return (
-    <div className="min-h-screen relative">
+    <div className="md:min-h-screen relative mx-4 md:mx-0">
       <Icon
         name="VECTOR"
         width={1512}
         height={982}
         className="-z-10 absolute"
       />
-      <div className="container py-[80px]">
+      <div className="container py-[40px] md:py-[80px] flex flex-col md:gap-4 gap-0">
         <div className="flex items-center gap-8">
-          <h1 className="uppercase text-8xl pt-2">we are</h1>
+          <h1 className="uppercase text-3xl md:text-8xl pt-2">we are</h1>
           <Icon
             name="LEFT_DOWN_ARROW"
-            width={96}
-            height={96}
-            className="pb-16"
+            width={isDesktop ? 96 : 50}
+            height={isDesktop ? 96 : 50}
+            className="md:pb-16 pb-4"
           />
         </div>
-        <div className="mt-24">
+        <div className=" md:mt-24 mt-[87px]">
           <TextRevealAnimation
-            fontSize="105px"
+            fontSize={isDesktop ? "105px" : "31px"}
             classNames="uppercase text-8xl text-h1 font-archivo leading-[137px]"
             words={[
               { word: "JIO CREATIVE LABS", color: "primary" },
@@ -64,7 +66,7 @@ const Section2 = () => {
             ]}
           />
         </div>
-        <div className="flex gap-[80px] ">
+        <div className="flex">
           <div>
             <div className="pt-3 flex flex-col gap-4 pb-5">
               <p className="font-medium text-label text-[#4A4A4A] max-w-[800px] leading-[150%]">
@@ -133,16 +135,6 @@ const Section2 = () => {
                   )}{" "}
                 </div>
               </button>
-            </div>
-          </div>
-          <div>
-            <div className="animate-spin-slow mt-4">
-              <Icon
-                className="animate-scale "
-                name="LOGO_ROUND"
-                width="100"
-                height="100"
-              />
             </div>
           </div>
         </div>

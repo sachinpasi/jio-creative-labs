@@ -1,13 +1,10 @@
-"use client";
-
 import gsap from "gsap";
 import React, { useEffect, useRef } from "react";
-import Icon from "./Icon";
 
 export default function App({ items }) {
   const ref = useRef();
-  const autoSlideInterval = 3000; // Adjust this value to change auto slide interval
-  let autoSlideTimer; // Timer variable for auto slide
+  const autoSlideInterval = 10000;
+  let autoSlideTimer;
 
   const next = () => {
     var wrapHeight = (ref.current.children.length - 1) * window.innerHeight;
@@ -35,9 +32,8 @@ export default function App({ items }) {
     gsap.set(ref.current.children, {
       y: (y, target) => target.dataset.index * window.innerHeight,
     });
-    startAutoSlide(); // Start auto slide when component mounts
+    startAutoSlide();
 
-    // Cleanup function to stop auto slide when component unmounts
     return () => {
       stopAutoSlide();
     };
@@ -45,7 +41,7 @@ export default function App({ items }) {
 
   return (
     <div
-      className="w-screen h-screen flex flex-col overflow-hidden relative bg-black"
+      className="w-screen md:h-screen h-[200px] flex flex-col overflow-hidden relative bg-black"
       ref={ref}
     >
       {items.map((item, index) => (
@@ -54,7 +50,10 @@ export default function App({ items }) {
           className="w-screen h-screen absolute"
           data-index={index}
         >
-          <Icon name={item.name} fill className="object-contain" />
+          <video autoPlay preload="auto" muted>
+            <source src={item.name} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
       ))}
     </div>

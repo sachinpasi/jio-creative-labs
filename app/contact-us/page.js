@@ -1,14 +1,17 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import FormInput from "../components/UI/FormInput";
 import FormNumber from "../components/UI/FormNumber";
 import TextArea from "../components/UI/TextArea";
 import FormUpload from "../components/UI/FormUpload";
 import Icon from "../components/UI/Icon";
 import FormSelect from "../components/UI/FormSelect";
+import gsap from "gsap";
 
 const ContactUsPage = () => {
   const [isHovered, setIsHovered] = useState(false);
+
+  const icon = useRef(null);
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -22,25 +25,39 @@ const ContactUsPage = () => {
     background:
       "linear-gradient(90deg, #03007F 0%, #FF2E63 53.12%, #00C0CC 100%)",
   };
+  useEffect(() => {
+    const floatingAnimation = gsap.to(icon.current, {
+      y: -30,
+      duration: 2,
+      ease: "power1.inOut",
+      repeat: -1,
+      yoyo: true,
+    });
+
+    return () => {
+      floatingAnimation.kill();
+    };
+  }, []);
+
   return (
-    <div className=" px-12 container py-[150px]">
+    <div className=" md:px-12 px-5 container md:py-[150px] py-[90px]">
       <div className="w-full">
         <h1 className="uppercase text-h4">Contact Us</h1>
         <div className="h-[1.5px] w-full bg-[#1D1D1F]"></div>
       </div>
-      <div className="w-full my-[60px] flex justify-between pb-20">
+      <div className="w-full my-[60px] flex flex-col md:flex-row justify-between">
         <div>
-          <h1 className="font-source-sans font-bold text-[32px]">
+          <h1 className="font-source-sans font-bold md:text-[32px] text-3xl text-wrap">
             Let the ad-venture begin! Drop by to say hello to Gin & Tonic!
           </h1>
-          <p className="text-[18px] font-medium text-black-2 mt-1">
+          <p className="md:text-[18px] text-base font-medium text-black-2 mt-1">
             Send us a message and we will get back to you as soon as we can :)
           </p>
           <form
-            className="my-[40px] max-w-[600px] flex flex-col gap-6"
+            className="my-[40px]  md:max-w-[600px] flex flex-col gap-6"
             action=""
           >
-            <div className="flex w-[600px] gap-6">
+            <div className="flex flex-col md:flex-row  md:w-[600px] gap-6">
               <FormInput name="First name" placeholder="First name" />
               <FormInput name="Last name" placeholder="Last name" />
             </div>
@@ -89,19 +106,29 @@ const ContactUsPage = () => {
             </div>
           </form>
         </div>
-        <div>
-          <Icon name="CONTACT_1" width={360} height={641} />
+        <div ref={icon}>
+          <Icon
+            className="md:block hidden"
+            name="CONTACT_1"
+            width={360}
+            height={641}
+          />
         </div>
       </div>
 
       <div className="w-full h-[2px] bg-black"></div>
       <div className="mt-[100px] mb-[50px] flex items-center justify-between">
         <div className="">
-          <Icon name="CONTACT_2" width={600} height={500} />
+          <Icon
+            className="md:block hidden"
+            name="CONTACT_2"
+            width={600}
+            height={500}
+          />
         </div>
         <div className="flex flex-col gap-6 ">
           <div className="flex items-center ">
-            <div className="w-[55px] mr-3">
+            <div className="w-[55px] mr-3 -ml-[5px]">
               <svg
                 width="37"
                 height="37"
@@ -116,7 +143,7 @@ const ContactUsPage = () => {
               </svg>
             </div>
 
-            <p className="text-[#344054] text-[18px]">
+            <p className="text-[#344054] md:text-[18px]">
               2nd Floor, 4th North Avenue, Maker Maxity, Bandra Kurla Complex,
               Mumbai, Maharashtra 400051
             </p>
@@ -137,7 +164,7 @@ const ContactUsPage = () => {
               </svg>
             </div>
 
-            <p className="text-[#344054] text-[18px]">02235554000</p>
+            <p className="text-[#344054] md:text-[18px]">02235554000</p>
           </div>{" "}
           <div className="flex items-center ">
             <div className="w-[55px]">
@@ -155,7 +182,7 @@ const ContactUsPage = () => {
               </svg>
             </div>
 
-            <p className="text-[#344054] text-[18px]">
+            <p className="text-[#344054] md:text-[18px]">
               akshat.bhagat@jiocreativelabs.com
             </p>
           </div>

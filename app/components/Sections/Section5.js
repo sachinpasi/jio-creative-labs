@@ -1,36 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Marquee from "../UI/Marquee";
 import Icon from "../UI/Icon";
+import { CONSTANTS } from "@/app/constants";
 
 const Section5 = () => {
   return (
-    <div>
-      <div className="container my-[100px]">
-        <h1 className=" uppercase text-[60px] leading-[60px]">
+    <div className=" px-4 md:px-0">
+      <div className="container my-[50px] md:my-[100px]">
+        <h1 className=" uppercase md:text-[60px] text-3xl md:leading-[60px]">
           Recommended by <br /> the BEST
         </h1>
       </div>
       <div className="flex mb-[100px] -ml-[500px] justify-center ">
-        <Marquee startFrom="left">
-          {[
-            "BALAJI",
-            "COLORS",
-            "DETTOL",
-            "HDFC",
-            "ROSO",
-            "SWIGGY",
-            "COLORS",
-            "DETTOL",
-            "HDFC",
-            "ROSO",
-            "SWIGGY",
-            "BALAJI",
-            "COLORS",
-            "DETTOL",
-            "HDFC",
-            "ROSO",
-            "SWIGGY",
-          ].map((el) => (
+        <Marquee startFrom="left" onlyOneDirection>
+          {CONSTANTS.LIST.map((el) => (
             <div
               key={el}
               className="w-[300px] h-[117px] flex justify-center items-center object-contain"

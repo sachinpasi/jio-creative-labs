@@ -1,13 +1,13 @@
 import React from "react";
 import Icon from "./Icon";
 
-const InstagramCard = ({ name }) => {
+const InstagramCard = ({ name, isDesktop }) => {
   return (
     <div
       style={{
         border: "0.863078px solid #BDBDBD",
       }}
-      className="w-[240px] h-[400px] rounded-[10px] p-4 flex flex-col gap-4"
+      className=" md:w-[240px]  md:h-[400px] w-full h-[550px] rounded-[10px] p-4 flex flex-col gap-4"
     >
       <div className="flex justify-between items-center">
         <div>
@@ -21,10 +21,15 @@ const InstagramCard = ({ name }) => {
           <Icon name="INSTA" width={18} height={18} />
         </div>
       </div>
-      <div className="w-[210px] h-[210px] rounded-[8px] ">
-        <Icon name={name} width={210} height={210} className="rounded-[8px]" />
+      <div className="md:w-[210px] w-[328px] h-[328px] md:h-[210px] rounded-[8px] ">
+        <Icon
+          name={name}
+          width={isDesktop ? 210 : 328}
+          height={isDesktop ? 210 : 328}
+          className="rounded-[8px]"
+        />
       </div>
-      <div className="flex gap-4">
+      <div className="flex gap-4 mt-4 md:mt-0">
         <div className="rounded-full border-[0.9px] w-[28px] h-[28px] flex justify-center items-center overflow-hidden">
           <Icon name="JCL_LOGO_ROUND" width={18} height={18} />
         </div>

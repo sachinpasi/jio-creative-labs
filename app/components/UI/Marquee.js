@@ -2,7 +2,7 @@
 import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 
-const Marquee = ({ children, startFrom, duration }) => {
+const Marquee = ({ children, startFrom, duration, onlyOneDirection }) => {
   const marqueeRef = useRef(null);
 
   useEffect(() => {
@@ -14,56 +14,77 @@ const Marquee = ({ children, startFrom, duration }) => {
 
     // Move content from left to right
 
-    if (startFrom === "left") {
-      tl.to(marqueeElement, {
-        x: -1000,
-        duration: duration || 5,
-        ease: "linear",
-        immediateRender: false,
-      })
-        .to(marqueeElement, {
-          x: 1000,
-          duration: duration || 4,
-          ease: "linear",
-          immediateRender: false,
-        })
-        .to(marqueeElement, {
-          x: -1000,
-          duration: duration || 5,
+    if (onlyOneDirection) {
+      if (startFrom === "left") {
+        tl.to(marqueeElement, {
+          x: -textWidth, // start from the position where the text is fully hidden on the left
+          duration: (textWidth + containerWidth) / 140, // calculate the duration based on the distance to travel
           ease: "linear",
           immediateRender: false,
         });
-    }
+      }
 
-    if (startFrom === "right") {
-      tl.to(marqueeElement, {
-        x: -1000,
-        duration: 0,
-        ease: "linear",
-        immediateRender: false,
-      })
-        .to(marqueeElement, {
-          x: 1000,
-          duration: duration || 5,
-          ease: "linear",
-          immediateRender: false,
-        })
-        .to(marqueeElement, {
-          x: -1000,
-          duration: duration || 4,
-          ease: "linear",
-          immediateRender: false,
-        })
-        .to(marqueeElement, {
-          x: 1000,
-          duration: duration || 5,
+      // Move content only from right to left
+      if (startFrom === "right") {
+        tl.to(marqueeElement, {
+          x: containerWidth, // start from the position where the text is fully hidden on the right
+          duration: (textWidth + containerWidth) / 140, // calculate the duration based on the distance to travel
           ease: "linear",
           immediateRender: false,
         });
+      }
+    } else {
+      if (startFrom === "left") {
+        tl.to(marqueeElement, {
+          x: -1000,
+          duration: duration || 5,
+          ease: "linear",
+          immediateRender: false,
+        })
+          .to(marqueeElement, {
+            x: 1000,
+            duration: duration || 4,
+            ease: "linear",
+            immediateRender: false,
+          })
+          .to(marqueeElement, {
+            x: -1000,
+            duration: duration || 5,
+            ease: "linear",
+            immediateRender: false,
+          });
+      }
+
+      if (startFrom === "right") {
+        tl.to(marqueeElement, {
+          x: -1000,
+          duration: 0,
+          ease: "linear",
+          immediateRender: false,
+        })
+          .to(marqueeElement, {
+            x: 1000,
+            duration: duration || 5,
+            ease: "linear",
+            immediateRender: false,
+          })
+          .to(marqueeElement, {
+            x: -1000,
+            duration: duration || 4,
+            ease: "linear",
+            immediateRender: false,
+          })
+          .to(marqueeElement, {
+            x: 1000,
+            duration: duration || 5,
+            ease: "linear",
+            immediateRender: false,
+          });
+      }
     }
 
     return () => tl.kill();
-  }, [startFrom, duration]);
+  }, [startFrom, duration, onlyOneDirection]);
 
   return (
     <div className="marquee" ref={marqueeRef}>
