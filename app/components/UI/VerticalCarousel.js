@@ -50,7 +50,7 @@ export default function App({ items }) {
           className="w-screen h-screen absolute"
           data-index={index}
         >
-          <video autoPlay preload="auto" muted>
+          <video autoPlay preload="auto" muted playsInline>
             <source src={item.name} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
