@@ -1,4 +1,3 @@
-"use client";
 import { useEffect, useRef } from "react";
 import { gsap, Linear } from "gsap";
 import { isSmallScreen } from "@/app/page";
@@ -11,51 +10,70 @@ const CURSOR_STYLES = {
 const Cursor = ({ isDesktop = true }) => {
   const cursor = useRef(null);
 
-  let diff = 0;
-
-  if (document.body.clientWidth > 1920) {
-    diff = (document.body.clientWidth - 1920) / 2;
-  }
-
-  const onHover = () => {
-    gsap.to(cursor.current, {
-      scale: 0.5,
-      duration: 0.3,
-    });
-  };
-
-  const onUnhover = () => {
-    gsap.to(cursor.current, {
-      scale: 1,
-      duration: 0.3,
-    });
-  };
-
-  const moveCircle = (e) => {
-    gsap.to(cursor.current, {
-      x: e.clientX - 50 - diff,
-      y: e.clientY - 50,
-      duration: 0.1,
-      ease: Linear.easeNone,
-    });
-  };
-
-  const initCursorAnimation = () => {
-    cursor.current.classList.remove("hidden");
-
-    document.addEventListener("mousemove", moveCircle);
-
-    document.querySelectorAll(".link").forEach((el) => {
-      el.addEventListener("mouseenter", onHover);
-      el.addEventListener("mouseleave", onUnhover);
-    });
-  };
-
   useEffect(() => {
+    let diff = 0;
+
+    const calculateDiff = () => {
+      if (window.innerWidth > 1920) {
+        diff = (window.innerWidth - 1920) / 2;
+      } else {
+        diff = 0;
+      }
+    };
+
+    const onHover = () => {
+      gsap.to(cursor.current, {
+        scale: 0.5,
+        duration: 0.3,
+      });
+    };
+
+    const onUnhover = () => {
+      gsap.to(cursor.current, {
+        scale: 1,
+        duration: 0.3,
+      });
+    };
+
+    const moveCircle = (e) => {
+      gsap.to(cursor.current, {
+        x: e.clientX - 50 - diff,
+        y: e.clientY - 50,
+        duration: 0.1,
+        ease: Linear.easeNone,
+      });
+    };
+
+    const initCursorAnimation = () => {
+      cursor.current.classList.remove("hidden");
+
+      document.querySelectorAll(".link").forEach((el) => {
+        el.addEventListener("mouseenter", onHover);
+        el.addEventListener("mouseleave", onUnhover);
+      });
+
+      document.addEventListener("mousemove", moveCircle);
+    };
+
     if (isDesktop && !isSmallScreen()) {
       initCursorAnimation();
     }
-  }, [cursor, isDesktop]);
+
+    calculateDiff(); // Calculate diff initially
+
+    window.addEventListener("resize", calculateDiff);
+
+    return () => {
+      window.removeEventListener("resize", calculateDiff);
+
+      document.querySelectorAll(".link").forEach((el) => {
+        el.removeEventListener("mouseenter", onHover);
+        el.removeEventListener("mouseleave", onUnhover);
+      });
+
+      document.removeEventListener("mousemove", moveCircle);
+    };
+  }, [isDesktop]);
 
   return (
     <>
