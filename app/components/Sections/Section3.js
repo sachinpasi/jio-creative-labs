@@ -1,12 +1,16 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import ScrollTrigger from "gsap/ScrollTrigger";
 import { gsap } from "gsap";
 import Icon from "../UI/Icon";
 
 const Section3 = () => {
   const illustrationRef = useRef(null);
+  const headingRef = useRef(null);
+  const subHeadingRef = useRef(null);
+  const container = useRef(null);
+
   gsap.registerPlugin(ScrollTrigger);
 
   useEffect(() => {
@@ -23,42 +27,76 @@ const Section3 = () => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   const containers = document.querySelectorAll(".text-change-on-scroll");
-  //   let tl = null;
-  //   containers.forEach((container) => {
-  //     tl = gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: container,
-  //         pin: true,
-  //         pinSpacing: true,
-  //         scrub: true,
-  //         markers: true,
-  //       },
-  //     });
+  useEffect(() => {
+    const array = [
+      {
+        heading: "Mainline Advertising",
+        subHeading: "TV, Print, Radio, Brand Strategy",
+      },
+      {
+        heading: "Full Service Digital Agency",
+        subHeading: `Social Media, Performance Management, ORM, Digital PR`,
+      },
+      {
+        heading: "Production + Post Production",
+        subHeading:
+          "In-house production capabilities and end-to-end post-production setup",
+      },
+      {
+        heading: "Ancillary Services",
+        subHeading:
+          "Events, IPs, Branded Content, Web Shows, Tech-Driven Content, Personality Branding, Website Development & Maintenance, SEO/SEM",
+      },
+    ];
+    const scrollDistance = 100 * array.length;
 
-  //     tl.to(container, {
-  //       autoAlpha: 1, // Fade in
-  //       duration: 0.5, // Adjust this duration as needed
-  //     }).to(
-  //       container,
-  //       {
-  //         autoAlpha: 0, // Fade out
-  //         duration: 0.5, // Adjust this duration as needed
-  //       },
-  //       "+=1" // Keep visible for 1 second before fading out
-  //     );
-  //   });
+    const mainTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: container.current,
+        start: "top top",
+        end: `+=${scrollDistance}%`,
+        scrub: true,
+        pin: true,
+      },
+    });
 
-  //   return () => {
-  //     tl.kill();
-  //   };
-  // }, []);
+    array.forEach((item, index) => {
+      const itemTimeline = gsap.timeline();
+
+      itemTimeline.to(headingRef.current, {
+        duration: 1,
+        ease: "none",
+        innerText: item.heading,
+      });
+
+      itemTimeline.to(
+        subHeadingRef.current,
+        {
+          duration: 1,
+          ease: "none",
+          innerText: item.subHeading,
+        },
+        "-=1"
+      );
+
+      mainTimeline.add(itemTimeline, `+=${index}`);
+    });
+
+    ScrollTrigger.create({
+      trigger: container.current,
+      start: "bottom bottom",
+      end: "+=100%",
+      pin: false,
+    });
+
+    return () => mainTimeline.kill();
+  }, []);
 
   return (
     <div
       id="services"
-      className="bg-black md:min-h-screen min-h-[80vh] py-[40px] md:py-[80px] px-4 md:px-0"
+      ref={container}
+      className="bg-black md:min-h-screen min-h-[100vh] pt-20 py-[40px] md:py-[80px] px-4 md:px-0"
     >
       <div className="container">
         <h1 className="text-white uppercase text-2xl md:text-[58px] md:leading-[60px]">
@@ -69,62 +107,30 @@ const Section3 = () => {
           competitors scratching their <br /> heads. We’ve got you covered,
           literally!
         </p>
-        <div className="flex mt-[100px]  items-center md:gap-36">
-          <div className="-ml-[40px] hidden md:block" ref={illustrationRef}>
-            <Icon name="ILLUSRTATION_2" width={500} height={440} />
+        <div className="flex mt-[60px] flex-col md:flex-row  items-center gap-12 md:gap-12">
+          <div
+            className="-ml-[40px] hidden md:block  md:min-w-[500px]"
+            ref={illustrationRef}
+          >
+            <Icon name="ILLUSRTATION_2" width={450} height={380} />
+          </div>
+          <div className="block md:hidden " ref={illustrationRef}>
+            <Icon name="ILLUSRTATION_2" width={300} height={300} />
           </div>
           <div>
-            <h1 className="text-white text-[38px] md:text-[48px] mt-2 md:mt-0">
+            <h1
+              ref={headingRef}
+              className="text-white text-[34px] md:text-[48px] mt-2 md:mt-0"
+            >
               Mainline Advertising
             </h1>
-            <p className="font-source-sans text-white text-[27px] font-medium">
+            <p
+              ref={subHeadingRef}
+              className="font-source-sans text-white md:text-[27px] font-medium"
+            >
               TV, Print, Radio, Brand Strategy
             </p>
           </div>
-          {/* <div className="w-full h-full">
-            <div className="text-change-on-scroll text-[48px] text-white invisible w-full h-full ">
-              Some Text
-            </div>
-            <div className="text-change-on-scroll text-[48px] text-white invisible w-full h-full">
-              Some Text
-            </div>
-            <div className="text-change-on-scroll text-[48px] text-white invisible w-full h-full">
-              Some Text
-            </div>
-            <div className="text-change-on-scroll text-[48px] text-white invisible w-full h-full">
-              Some Text
-            </div>
-            <div className="text-change-on-scroll text-[48px] text-white invisible w-full h-full">
-              Some Text
-            </div>
-            <div className="text-change-on-scroll text-[48px] text-white invisible w-full h-full">
-              Some Text
-            </div>
-            <div className="text-change-on-scroll text-[48px] text-white invisible w-full h-full">
-              Some Text
-            </div>
-            <div className="text-change-on-scroll text-[48px] text-white invisible w-full h-full">
-              Some Text
-            </div>
-            <div className="text-change-on-scroll text-[48px] text-white invisible w-full h-full">
-              Some Text
-            </div>
-            <div className="text-change-on-scroll text-[48px] text-white invisible w-full h-full">
-              Some Text
-            </div>
-            <div className="text-change-on-scroll text-[48px] text-white invisible w-full h-full">
-              Some Text
-            </div>
-            <div className="text-change-on-scroll text-[48px] text-white invisible w-full h-full">
-              Some Text
-            </div>
-            <div className="text-change-on-scroll text-[48px] text-white invisible w-full h-full">
-              Some Text
-            </div>
-            <div className="text-change-on-scroll text-[48px] text-white invisible w-full h-full">
-              Some Text
-            </div>
-          </div> */}
         </div>
       </div>
     </div>

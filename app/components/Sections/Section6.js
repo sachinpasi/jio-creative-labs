@@ -34,7 +34,7 @@ const Section6 = ({ isDesktop }) => {
   }, []);
 
   return (
-    <div className="container pt-[100px] pb-[50px]  px-4 md:px-0">
+    <div className="container pt-[50px] md:pt-[100px] pb-[50px]  px-4 md:px-0">
       <div className="mb-[100px]">
         <h1 className=" uppercase md:text-[60px] text-3xl md:leading-[60px]">
           What’s Going on!
