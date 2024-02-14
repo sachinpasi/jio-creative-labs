@@ -39,7 +39,7 @@ const Home = () => {
   }, [timer]);
 
   return (
-    <>
+    <main>
       <CustomCursor isDesktop={isDesktop} />
       <HeroSection />
       <Section1 isDesktop={isDesktop} />
@@ -48,7 +48,7 @@ const Home = () => {
       <Section4 />
       <Section5 />
       <Section6 isDesktop={isDesktop} />
-    </>
+    </main>
   );
 };
 

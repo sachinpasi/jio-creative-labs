@@ -13,9 +13,9 @@ const Section5 = () => {
       </div>
       <div className="flex mb-[100px] -ml-[500px] justify-center ">
         <Marquee startFrom="left" onlyOneDirection>
-          {CONSTANTS.LIST.map((el) => (
+          {CONSTANTS.LIST.map((el, I) => (
             <div
-              key={el}
+              key={I}
               className="w-[300px] h-[117px] flex justify-center items-center object-contain"
             >
               <Icon
