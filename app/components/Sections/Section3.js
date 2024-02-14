@@ -48,7 +48,7 @@ const Section3 = () => {
           "Events, IPs, Branded Content, Web Shows, Tech-Driven Content, Personality Branding, Website Development & Maintenance, SEO/SEM",
       },
     ];
-    const scrollDistance = 100 * array.length;
+    const scrollDistance = 70 * array.length;
 
     const mainTimeline = gsap.timeline({
       scrollTrigger: {
@@ -115,7 +115,7 @@ const Section3 = () => {
             <Icon name="ILLUSRTATION_2" width={450} height={380} />
           </div>
           <div className="block md:hidden " ref={illustrationRef}>
-            <Icon name="ILLUSRTATION_2" width={300} height={300} />
+            <Icon name="ILLUSRTATION_2" width={200} height={200} />
           </div>
           <div>
             <h1
