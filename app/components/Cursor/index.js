@@ -39,7 +39,7 @@ const Cursor = ({ isDesktop = true }) => {
       gsap.to(cursor.current, {
         x: e.clientX - 50 - diff,
         y: e.clientY - 50,
-        duration: 0.1,
+        duration: 0.05,
         ease: Linear.easeNone,
       });
     };

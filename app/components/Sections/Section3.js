@@ -85,7 +85,7 @@ const Section3 = () => {
     ScrollTrigger.create({
       trigger: container.current,
       start: "bottom bottom",
-      end: "+=100%",
+      end: `+=${scrollDistance}%`,
       pin: false,
     });
 
